@@ -1,0 +1,10 @@
+auto-save-list/
+straight/
+eln-cache/
+*.elc
+*.eln
+*.tmp
+*~
+history
+bookmarks
+recentf
