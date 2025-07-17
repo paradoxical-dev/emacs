@@ -1,3 +1,6 @@
+;; theme
+(load-theme 'modus-vivendi-tinted t)
+
 ;; relative line numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
