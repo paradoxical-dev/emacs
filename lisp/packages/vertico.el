@@ -20,6 +20,13 @@
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
 
+;; entry annotations
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+	      ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
+
 ;; needed for vertico buffer as stated in docs
 (use-package emacs
   :custom

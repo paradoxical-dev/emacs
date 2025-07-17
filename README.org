@@ -1,0 +1,13 @@
+#+TITLE: Cortex
+
+* 🧠 Cortex: An Emacs config for thinkers, builders and learners
+
+Cortex is a custom Emacs configuration built for those who want a deeply integrated, full-featured environment for writing, coding, learning, and living.
+
+Cortex brings together vim-style editing, project organization, personal knowledge management and a full-featured IDE all within the Emacs ecosystem.
+
+* Roadmap
+
+- [ ] Integrate Git
+- [ ] Integrate Org mode
+- [ ] IDE functionality
