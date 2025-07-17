@@ -8,5 +8,6 @@
 (require 'evil)
 (require 'vertico)
 (require 'consult)
+(require 'vterm)
 
 (provide 'packages)
