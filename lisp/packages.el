@@ -9,5 +9,6 @@
 (require 'vertico)
 (require 'consult)
 (require 'vterm)
+(require 'magit)
 
 (provide 'packages)

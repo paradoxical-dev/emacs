@@ -1,10 +1,13 @@
 auto-save-list/
 straight/
 eln-cache/
+transient/
 *.elc
 *.eln
 *.tmp
 *~
+**/#*#
+projects
 history
 bookmarks
 recentf
