@@ -3,6 +3,10 @@
 (use-package consult
   :config
   (setq consult-async-min-input 0)
+  ;; include hidden files
+  (setq consult-fd-args
+      `((if (executable-find "fdfind" 'remote) "fdfind" "fd")
+     "--full-path" "--color=never" "--hidden" "--exclude=.git"))
   :bind
   ;; files
   (:map evil-normal-state-map ("<leader>ff" . consult-fd))

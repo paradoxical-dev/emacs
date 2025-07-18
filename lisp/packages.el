@@ -10,5 +10,6 @@
 (require 'consult)
 (require 'vterm)
 (require 'magit)
+(require 'treesitter)
 
 (provide 'packages)

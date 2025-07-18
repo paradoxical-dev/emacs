@@ -7,6 +7,7 @@ transient/
 *.tmp
 *~
 **/#*#
+tramp
 projects
 history
 bookmarks
