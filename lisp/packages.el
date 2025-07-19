@@ -11,5 +11,6 @@
 (require 'vterm)
 (require 'magit)
 (require 'treesitter)
+(require 'lsp)
 
 (provide 'packages)
