@@ -25,6 +25,7 @@
 
 ;; set var to make straight use use-package by default
 (setq straight-use-package-by-default t)
+(setq use-package-verbose t)
 
 ;; MODULES ;;
 

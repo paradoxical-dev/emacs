@@ -2,6 +2,7 @@
 
 (use-package consult
   :config
+  (recentf-mode)
   (setq consult-async-min-input 0)
   ;; include hidden files
   (setq consult-fd-args

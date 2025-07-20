@@ -3,6 +3,7 @@
 ;; MAGIT ;;
 
 (use-package magit
+  ;; :commands (magit-status magit-log-all magit-ediff magit-branch magit-pull magit-push)
   :ensure t)
 
 ;; set default behavior for ediff
@@ -20,12 +21,13 @@
     (with-eval-after-load 'evil
       (define-key evil-normal-state-map (kbd full-key) func))))
 
+(with-eval-after-load 'magit
 (my/evil-normal-leader-bind "<leader>gg" #'magit-status)
 (my/evil-normal-leader-bind "<leader>gl" #'magit-log-all)
 (my/evil-normal-leader-bind "<leader>gd" #'magit-ediff)
 (my/evil-normal-leader-bind "<leader>gb" #'magit-branch)
 (my/evil-normal-leader-bind "<leader>gp" #'magit-pull)
-(my/evil-normal-leader-bind "<leader>gP" #'magit-push)
+(my/evil-normal-leader-bind "<leader>gP" #'magit-push))
 
 ;; DIFF HL ;;
 

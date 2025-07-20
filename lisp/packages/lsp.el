@@ -11,6 +11,7 @@
 
 (use-package lsp-pyright
   :ensure t
+  :after lsp-mode
   :custom (lsp-pyright-langserver-command "pyright")
   :hook
   (python-mode . (lambda ()
@@ -40,6 +41,8 @@
 (use-package yasnippet
   :ensure t
   :config
+  (setq yas-snippet-dirs
+	'("~/.config/emacs/straight/repos/yasnippet-snippets/snippets"))
   (yas-global-mode 1))
 
 ;; snippets bundle

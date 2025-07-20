@@ -9,6 +9,7 @@
 (require 'vertico)
 (require 'consult)
 (require 'vterm)
+(require 'projectile)
 (require 'magit)
 (require 'treesitter)
 (require 'lsp)
