@@ -1,1 +1,1 @@
-("~/.config/emacs/" "~/TheForge/")
+("~/.config/emacs/" "/nix/store/0w4yr4yw7hm2pkhc49d2h99c6fwrx0yl-emacs-pgtk-30.1/share/emacs/30.1/lisp/" "~/TheForge/")

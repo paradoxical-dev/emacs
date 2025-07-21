@@ -50,6 +50,7 @@
 ;; CONFIG ;;
 
 (use-package vterm
+  :defer t
   :bind (:map evil-normal-state-map
 	      ("<leader>tt" . #'my/vertical-vterm)
 	      ("<leader>th" . #'my/horizontal-vterm))
@@ -57,4 +58,4 @@
   (vterm-mode . (lambda () (display-line-numbers-mode 0)))
   :ensure t)
 
-(provide 'vterm)
+(provide 'shell-module)

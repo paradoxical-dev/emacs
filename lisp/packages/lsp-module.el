@@ -40,6 +40,7 @@
 ;; snippets
 (use-package yasnippet
   :ensure t
+  :defer 0
   :config
   (setq yas-snippet-dirs
 	'("~/.config/emacs/straight/repos/yasnippet-snippets/snippets"))
@@ -47,6 +48,7 @@
 
 ;; snippets bundle
 (use-package yasnippet-snippets
+  :defer 0
   :ensure t)
 
 ;; LSP ;;
@@ -146,4 +148,4 @@
   (:map evil-normal-state-map ("<leader>li" . lsp-ui-peek-find-implementations)))
 
 
-(provide 'lsp) 
+(provide 'lsp-module) 

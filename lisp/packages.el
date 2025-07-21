@@ -6,12 +6,11 @@
 
 ;; load packages
 (require 'evil)
-(require 'vertico)
-(require 'consult)
-(require 'vterm)
+(require 'search-module)
+(require 'shell-module)
 (require 'projectile)
-(require 'magit)
+(require 'git-module)
 (require 'treesitter)
-(require 'lsp)
+(require 'lsp-module)
 
 (provide 'packages)
