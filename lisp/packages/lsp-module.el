@@ -25,7 +25,11 @@
   :ensure t
   :defer t
   :hook ((prog-mode . corfu-mode)
-	 (prog-mode . corfu-popupinfo-mode))
+	 (prog-mode . corfu-popupinfo-mode)
+	 (text-mode . corfu-mode)
+	 (text-mode . corfu-popupinfo-mode)
+	 (org-mode . corfu-mode)
+	 (org-mode . corfu-popupinfo-mode))
   :config
   (setq corfu-auto t
 	corfu-quit-no-match 'separator)
@@ -62,6 +66,8 @@
   ((prog-mode . (lambda ()
 		  (unless (derived-mode-p 'emacs-lisp-mode)
 		    (lsp-deferred)))))
+  (text-mode . lsp-deferred)
+  (org-mode . lsp-deferred)
   ((lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq lsp-enable-symbol-highlighting t

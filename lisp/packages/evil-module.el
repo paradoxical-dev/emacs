@@ -28,18 +28,24 @@
 (use-package evil-surround
   :ensure t
   :after evil
-  :hook (prog-mode . evil-surround-mode))
+  :hook ((prog-mode . evil-surround-mode)
+	 (text-mode . evil-surround-mode)
+	 (org-mode . evil-surround-mode)))
 
 ;; auto comment
 (use-package evil-commentary
   :ensure t
   :after evil
-  :hook (prog-mode . evil-commentary-mode))
+  :hook ((prog-mode . evil-commentary-mode)
+	 (text-mode . evil-commentary-mode)
+	 (org-mode . evil-commentary-mode)))
 
 ;; better search
 (use-package evil-visualstar
   :ensure t
   :after evil
-  :hook (prog-mode . evil-visualstar-mode))
+  :hook ((prog-mode . evil-visualstar-mode)
+	 (text-mode . evil-visualstar-mode)
+	 (org-mode . evil-visualstar-mode)))
 
 (provide 'evil-module)

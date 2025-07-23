@@ -23,6 +23,8 @@
 (use-package diff-hl
   :ensure t
   :hook ((prog-mode . diff-hl-mode)
+	 (text-mode . diff-hl-mode)
+	 (org-mode . diff-hl-mode)
 	 (magit-post-refresh . diff-hl-magit-post-refresh))
   :bind
   (:map evil-normal-state-map ("]h" . diff-hl-show-hunk-next))
