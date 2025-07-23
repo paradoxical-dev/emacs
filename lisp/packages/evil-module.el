@@ -4,8 +4,8 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-C-u-scroll t)
   (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
   (setq evil-undo-system 'undo-tree)
   :config
   (evil-mode 1)
@@ -14,8 +14,6 @@
 ;; undo-tree for C-r map
 (use-package undo-tree
   :ensure t
-  :init
-  (setq evil-undo-system 'undo-tree)
   :config
   (global-undo-tree-mode))
 
@@ -29,19 +27,19 @@
 ;; surround for text objs
 (use-package evil-surround
   :ensure t
-  :config
-  (global-evil-surround-mode 1))
+  :after evil
+  :hook (prog-mode . evil-surround-mode))
 
 ;; auto comment
 (use-package evil-commentary
   :ensure t
-  :config
-  (evil-commentary-mode))
+  :after evil
+  :hook (prog-mode . evil-commentary-mode))
 
 ;; better search
 (use-package evil-visualstar
   :ensure t
-  :config
-  (global-evil-visualstar-mode))
+  :after evil
+  :hook (prog-mode . evil-visualstar-mode))
 
-(provide 'evil)
+(provide 'evil-module)

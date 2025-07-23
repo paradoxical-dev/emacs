@@ -6,4 +6,4 @@
   :bind
   (:map evil-normal-state-map ("<leader>." . projectile-find-file)))
 
-(provide 'projectile)
+(provide 'project-module)

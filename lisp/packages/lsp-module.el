@@ -23,12 +23,12 @@
 ;; completion frontend
 (use-package corfu
   :ensure t
-  :init
-  (global-corfu-mode)
+  :defer t
+  :hook ((prog-mode . corfu-mode)
+	 (prog-mode . corfu-popupinfo-mode))
   :config
   (setq corfu-auto t
 	corfu-quit-no-match 'separator)
-  (corfu-popupinfo-mode)
   (setq corfu-popupinfo-delay 0.1))
 
 ;; use tab for completion cycling
@@ -58,16 +58,11 @@
   :ensure t
   :commands lsp
   :hook
+  ;; do not load for elisp
   ((prog-mode . (lambda ()
 		  (unless (derived-mode-p 'emacs-lisp-mode)
 		    (lsp-deferred)))))
   ((lsp-mode . lsp-enable-which-key-integration))
-  :init
-  ;; do not load for elisp
-  (add-hook 'prog-mode-hook
-          (lambda ()
-            (unless (derived-mode-p 'emacs-lisp-mode)
-              (lsp-deferred))))
   :config
   (setq lsp-enable-symbol-highlighting t
 	lsp-enable-snippet t
@@ -119,7 +114,7 @@
   (define-key lsp-ui-peek-mode-map (kbd "C-h") #'lsp-ui-peek--select-prev-file)
   ;; colors
   (let ((bg (face-background 'menu))
-	(fg (face-foreground 'which-func)))
+	(fg (face-foreground 'font-lock-keyword-face)))
     (set-face-attribute 'lsp-ui-peek-header nil :background bg :foreground fg)
     (set-face-attribute 'lsp-ui-peek-footer nil :background bg :foreground fg))
 

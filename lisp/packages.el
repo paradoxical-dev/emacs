@@ -5,12 +5,12 @@
 (add-to-list 'load-path (expand-file-name "packages" (file-name-directory load-file-name)))
 
 ;; load packages
-(require 'evil)
+(require 'evil-module)
 (require 'search-module)
 (require 'shell-module)
-(require 'projectile)
+(require 'project-module)
 (require 'git-module)
-(require 'treesitter)
+(require 'ts-module)
 (require 'lsp-module)
 
 (provide 'packages)

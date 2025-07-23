@@ -3,7 +3,6 @@
 ;; MAGIT ;;
 
 (use-package magit
-  ;; :init (require 'magit)
   :commands (magit-status magit-log-all magit-ediff magit-branch magit-pull magit-push)
   :bind
   (:map evil-normal-state-map ("<leader>gg" . magit-status))
@@ -23,11 +22,8 @@
 
 (use-package diff-hl
   :ensure t
-  :init
-  (global-diff-hl-mode)
-  :config
-  ;; (setq vc-handled-backends '(Git))
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  :hook ((prog-mode . diff-hl-mode)
+	 (magit-post-refresh . diff-hl-magit-post-refresh))
   :bind
   (:map evil-normal-state-map ("]h" . diff-hl-show-hunk-next))
   (:map evil-normal-state-map ("[h" . diff-hl-show-hunk-previous))
