@@ -35,6 +35,12 @@
 	corfu-quit-no-match 'separator)
   (setq corfu-popupinfo-delay 0.1))
 
+(use-package nerd-icons-corfu
+  :ensure t
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
 ;; terminal support
 (use-package corfu-terminal
   :ensure t
