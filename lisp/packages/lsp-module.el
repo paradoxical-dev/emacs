@@ -44,6 +44,7 @@
 	lsp-enable-snippet t
 	lsp-idle-delay 0.25
 	lsp-headerline-breadcrumb-segments '(project file symbols)
+	lsp-warn-no-matched-clients nil
 	gc-cons-threshold 100000000
 	lsp-use-plists 1
 	lsp-log-io nil)

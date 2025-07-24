@@ -13,5 +13,6 @@
 (require 'ts-module)
 (require 'lsp-module)
 (require 'completion-module)
+(require 'rest-module)
 
 (provide 'packages)
