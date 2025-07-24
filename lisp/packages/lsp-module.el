@@ -88,10 +88,13 @@
   (text-mode . lsp-deferred)
   (org-mode . lsp-deferred)
   ((lsp-mode . lsp-enable-which-key-integration))
+  :bind
+  (:map evil-normal-state-map ("<leader>lC" . lsp-execute-code-action))
   :config
   (setq lsp-enable-symbol-highlighting t
 	lsp-enable-snippet t
 	lsp-idle-delay 0.25
+	lsp-headerline-breadcrumb-segments '(project file symbols)
 	gc-cons-threshold 100000000
 	lsp-use-plists 1
 	lsp-log-io nil)

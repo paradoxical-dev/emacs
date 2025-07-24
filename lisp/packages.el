@@ -12,5 +12,6 @@
 (require 'git-module)
 (require 'ts-module)
 (require 'lsp-module)
+(require 'ai-module)
 
 (provide 'packages)

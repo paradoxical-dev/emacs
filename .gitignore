@@ -2,6 +2,7 @@ auto-save-list/
 straight/
 eln-cache/
 transient/
+codeium/
 *.elc
 *.eln
 *.tmp
@@ -14,3 +15,4 @@ bookmarks
 recentf
 .lsp-session*
 projectile-bookmarks.eld
+secrets.el
