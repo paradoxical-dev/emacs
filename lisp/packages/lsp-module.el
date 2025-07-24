@@ -9,6 +9,7 @@
   :ensure t
   :mode "\\.nix\\'")
 
+;; python
 (use-package lsp-pyright
   :ensure t
   :after lsp-mode
@@ -18,60 +19,8 @@
 		   (require 'lsp-pyright)
 		   (lsp-deferred))))
 
-;; COMPLETION  ;;
-
-;; completion frontend
-(use-package corfu
-  :ensure t
-  :defer t
-  :hook ((prog-mode . corfu-mode)
-	 (prog-mode . corfu-popupinfo-mode)
-	 (text-mode . corfu-mode)
-	 (text-mode . corfu-popupinfo-mode)
-	 (org-mode . corfu-mode)
-	 (org-mode . corfu-popupinfo-mode))
-  :config
-  (setq corfu-auto t
-	corfu-quit-no-match 'separator)
-  (setq corfu-popupinfo-delay 0.1))
-
-(use-package nerd-icons-corfu
-  :ensure t
-  :after corfu
-  :config
-  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
-
-;; terminal support
-(use-package corfu-terminal
-  :ensure t
-  :after corfu
-  :config
-  ;; only enables in terminal session
-  ;; removes popupinfo with echo for documentation
-  (unless (display-graphic-p)
-    (corfu-popupinfo-mode -1)
-    (setq corfu-echo-delay 0.1)
-    (corfu-echo-mode +1)
-    (corfu-terminal-mode +1)))
-
-;; use tab for completion cycling
-(use-package emacs
-  :custom
-  (tab-always-indent 'complete)
-  (text-mode-ispell-word-completion nil))
-
-;; snippets
-(use-package yasnippet
-  :ensure t
-  :defer 0
-  :config
-  (setq yas-snippet-dirs
-	'("~/.config/emacs/straight/repos/yasnippet-snippets/snippets"))
-  (yas-global-mode 1))
-
-;; snippets bundle
-(use-package yasnippet-snippets
-  :defer 0
+(use-package pyvenv
+  :commands (pyvenv-workon pyvenv-activate)
   :ensure t)
 
 ;; LSP ;;
