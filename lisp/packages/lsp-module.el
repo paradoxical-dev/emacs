@@ -35,6 +35,19 @@
 	corfu-quit-no-match 'separator)
   (setq corfu-popupinfo-delay 0.1))
 
+;; terminal support
+(use-package corfu-terminal
+  :ensure t
+  :after corfu
+  :config
+  ;; only enables in terminal session
+  ;; removes popupinfo with echo for documentation
+  (unless (display-graphic-p)
+    (corfu-popupinfo-mode -1)
+    (setq corfu-echo-delay 0.1)
+    (corfu-echo-mode +1)
+    (corfu-terminal-mode +1)))
+
 ;; use tab for completion cycling
 (use-package emacs
   :custom
