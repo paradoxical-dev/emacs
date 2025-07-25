@@ -23,6 +23,11 @@
   :commands (pyvenv-workon pyvenv-activate)
   :ensure t)
 
+;; rust
+(use-package rust-mode
+  :ensure t
+  :mode "\\.rs\\'")
+
 ;; LSP ;;
 
 ;; base lsp backend
@@ -38,6 +43,7 @@
   (org-mode . lsp-deferred)
   ((lsp-mode . lsp-enable-which-key-integration))
   :bind
+  (:map evil-normal-state-map ("<leader>lR" . lsp-rename))
   (:map evil-normal-state-map ("<leader>lC" . lsp-execute-code-action))
   :config
   (setq lsp-enable-symbol-highlighting t

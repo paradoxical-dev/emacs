@@ -12,6 +12,7 @@
 (require 'git-module)
 (require 'ts-module)
 (require 'lsp-module)
+(require 'dap-module)
 (require 'completion-module)
 (require 'rest-module)
 

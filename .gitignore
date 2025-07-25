@@ -3,6 +3,8 @@ straight/
 eln-cache/
 transient/
 codeium/
+.cache/
+.extension/
 *.elc
 *.eln
 *.tmp
@@ -16,3 +18,5 @@ recentf
 .lsp-session*
 projectile-bookmarks.eld
 secrets.el
+.dap-breakpoints
+dap-ui-repl*
