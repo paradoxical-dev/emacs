@@ -7,8 +7,21 @@
   "Prompt for binary when launching GDB."
   (let* ((exe (read-file-name "Path to binary: " (projectile-project-root))))
     (plist-put conf :program exe)
-    (plist-put conf :cwd (file-name-directory exe))
     (plist-put conf :dap-server-path '("gdb" "-i" "dap"))
+    conf))
+
+(defun my/dap-lldb-provider (conf)
+  "Prompt for binary when launching LLDB."
+  (let* ((exe (read-file-name "Path to binary: " (projectile-project-root))))
+    (plist-put conf :program exe)
+    (plist-put conf :dap-server-path '("lldb-dap"))
+    conf))
+
+(defun my/dap-codelldb-provider (conf)
+  "Prompt for binary when launching CodeLLDB."
+  (let* ((exe (read-file-name "Path to binary: " (projectile-project-root))))
+    (plist-put conf :program exe)
+    (plist-put conf :dap-server-path (expand-file-name ".extension/vscode/codelldb/extension/adapter/codelldb" user-emacs-directory))
     conf))
 
 ;; IMPLEMENTATION ;;
@@ -37,6 +50,7 @@
 	 :stopAtEntry :json-false
 	 :externalConsole :json-false
 	 :MIMode "gdb"
+	 :cwd "${workspaceFolder}"
 	 :setupCommands [
 			 (list :description "Enable pretty-printing for gdb"
                                :text "-enable-pretty-printing"
@@ -48,29 +62,29 @@
   ;; lldb
   (require 'dap-lldb)
   (setq dap-lldb-debug-program (list (expand-file-name "~/.nix-profile/bin/lldb-dap")))
+  (dap-register-debug-provider "lldb-dynamic" #'my/dap-lldb-provider)
   (dap-register-debug-template
-   "test 1"
-   (list :type "lldb-vscode"
+   "LLDB: Prompt Binary"
+   (list :type "lldb-dynamic"
 	 :request "launch"
-	 :name "test 1"
-	 :stopAtEntry t
+	 :name "LLDB: Prompt Binary"
+	 :stopAtEntry :json-false
 	 :externalConsole :json-false
-	 :program "/home/gitmoney/debug-tests/debug-rust/target/debug/debug-rust"
-	 :cwd "/home/gitmoney/debug-tests/debug-rust"
+	 :cwd "${workspaceFolder}"
 	 :args []))
 
   (require 'dap-codelldb)
-  ;; INFO: This needs to be installed from the release page. Use this command:
+  ;; INFO: This needs to be manually installed from the release page. Use this command:
   ;; `wget https://github.com/vadimcn/vscode-lldb/releases/download/v1.11.5/codelldb-linux-x64.vsix`
-  (setq dap-codelldb-debug-program (expand-file-name "~/.local/share/codelldb/extension/adapter/codelldb"))
+  (setq dap-codelldb-debug-program (expand-file-name ".extension/vscode/codelldb/extension/adapter/codelldb" user-emacs-directory))
+  (dap-register-debug-provider "codelldb-dynamic" #'my/dap-lldb-provider)
   (dap-register-debug-template
-   "test 2"
-   (list :type "lldb"
+   "CodeLLDB: Prompt Binary"
+   (list :type "codelldb-dynamic"
 	 :request "launch"
-	 :name "test 2"
+	 :name "CodeLLDB: Prompt Binary"
 	 :externalConsole :json-false
-	 :program "/home/gitmoney/debug-tests/debug-rust/target/debug/debug-rust"
-	 :cwd "/home/gitmoney/debug-tests/debug-rust"
+	 :cwd "${workspaceFolder}"
 	 :env '(("RUST_BACKTRACE" . "full"))
 	 :args []))
 
