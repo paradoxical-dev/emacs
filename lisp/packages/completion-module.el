@@ -12,8 +12,9 @@
 	 (org-mode . corfu-mode)
 	 (org-mode . corfu-popupinfo-mode))
   :config
-  (setq corfu-auto t
-	corfu-quit-no-match 'separator)
+  ;; (setq corfu-auto t
+  ;; 	corfu-quit-no-match 'separator)
+  (setq corfu-quit-no-match 'separator)
   (setq corfu-popupinfo-delay 0.1))
 
 (use-package nerd-icons-corfu
@@ -55,12 +56,6 @@
   :defer 0
   :ensure t)
 
-(defun my/codeium-complete ()
-  "Trigger Codeium completion manually."
-  (interactive)
-  (let ((completion-at-point-functions '(codeium-completion-at-point)))
-    (completion-at-point)))
-
 ;; extensions for completion
 (use-package cape
   :ensure t
@@ -82,5 +77,36 @@
   :straight (:host github :repo "Exafunction/codeium.el")
   :config
   (setq codeium/metadata/api_key codeium-api-key))
+
+(use-package corfu-candidate-overlay
+  :after (corfu)
+  :init
+  (setq corfu-auto nil)
+  :config
+  (keymap-global-set "M-TAB" #'corfu-candidate-overlay-complete-at-point)
+  (unless (daemonp)
+    (let ((inhibit-message t)
+          (message-log-max nil))
+      (corfu-candidate-overlay-mode +1))))
+
+;; (use-package supermaven
+;;   :straight (:host github :repo "crazywolf132/supermaven.el")
+;;   :ensure t
+;;   :config
+;;   (setq supermaven-log-level 'debug)
+;;   (supermaven-mode)
+;;   (setq supermaven-keymaps
+;; 	'((accept-suggestion . "C-<return>")
+;; 	  (clear-suggestion . "C-c C-c")
+;; 	  (accept-word . "M-<right>"))))
+;; :hook ((prog-mode . supermaven-mode)
+;;        (supermaven-mode . supermaven-setup)) ; crucial!
+;; :init
+;; (setq supermaven-keymaps
+;;       '((accept-suggestion . "C-g")
+;;         (clear-suggestion . "C-]")
+;;         (accept-word . "C-j")))
+;; (setq supermaven-ignore-filetypes '("org" "md" "txt"))
+;; (setq supermaven-log-level 'debug))
 
 (provide 'completion-module)
