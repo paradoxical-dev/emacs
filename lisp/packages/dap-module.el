@@ -31,6 +31,31 @@
     (plist-put conf :dap-server-path (list (expand-file-name ".extension/vscode/cpptools/extension/debugAdapters/bin/OpenDebugAD7" user-emacs-directory)))
     conf))
 
+;; find chrome for cross compatibility
+(defun my/find-chrome ()
+  (or (executable-find "google-chrome-stable")
+      (executable-find "google-chrome")
+      (executable-find "chromium")
+      "/usr/bin/google-chrome"))  ;; fallback
+
+(defun my/dap-chrome-provider (conf)
+  "Prompt for port and set chrome path dynamically."
+  (let* ((port (read-string "Chrome remote debugging port: " "3000"))
+         (chrome-exe (my/find-chrome)))
+    (plist-put conf :runtimeExecutable chrome-exe)
+    (plist-put conf :url (format "http://localhost:%s" port))
+    (plist-put conf :dap-server-path (list "node" (expand-file-name ".extension/vscode/msjsdiag.debugger-for-chrome/extension/out/src/chromeDebug.js" user-emacs-directory)))
+    (plist-put conf :runtimeArgs
+               (vector
+                "--remote-debugging-port=9222"
+                "--no-first-run"
+                "--no-default-browser-check"
+                "--disable-default-apps"
+                "--disable-popup-blocking"
+                "--user-data-dir=/tmp/vscode-chrome-debug-profile"))
+    conf))
+
+
 ;; IMPLEMENTATION ;;
 (use-package dap-mode
   :ensure t
@@ -42,6 +67,7 @@
   (dap-ui-controls-mode 1)
 
   ;; LANGAUGES ;;
+
   ;; python
   (require 'dap-python)
   (setq dap-python-debugger 'debugpy)
@@ -113,6 +139,21 @@
   ;; firefox
   ;; Needs the one-time command `dap-firefox-setup` before useable
   (require 'dap-firefox)
+
+  ;; chrome
+  ;; Needs the one-time command `dap-chrome-setup` before useable
+  (require 'dap-chrome)
+  (dap-register-debug-provider "chrome-dynamic" #'my/dap-chrome-provider)
+  (dap-register-debug-template
+   "Chrome: Prompt Port"
+   (list :type "chrome-dynamic"
+	 :request "launch"
+	 :name "Chrome: Prompt Port"
+	 :webRoot "${workspaceFolder}/src"))
+
+  ;; node
+  ;; Needs the one-time command `dap-node-setup` before useable
+  (require 'dap-node)
 
   :bind
   (:map evil-normal-state-map ("<leader>db" . dap-breakpoint-toggle))
