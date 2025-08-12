@@ -5,6 +5,8 @@ transient/
 codeium/
 .cache/
 .extension/
+url/
+tree-sitter/
 *.elc
 *.eln
 *.tmp

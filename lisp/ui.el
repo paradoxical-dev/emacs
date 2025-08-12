@@ -1,9 +1,26 @@
 ;; theme
-(load-theme 'modus-vivendi-tinted t)
+(use-package autothemer
+  :ensure t)
+
+(straight-use-package
+ '(pinerose-emacs
+   :host github
+   :repo "konrad1977/pinerose-emacs"))
+
+(load-theme 'rose-pine t)
+
+(if (display-graphic-p)
+    (set-face-attribute 'default nil
+                        :background "#000000"
+                        :foreground "#e0def4")
+    (set-face-foreground 'vertico-current "e0def4")
+  (set-face-attribute 'default nil
+                      :background "undefined"
+                      :foreground "#e0def4"))
 
 ;; font
 (set-frame-font "JetBrainsMono Nerd Font-12" t t)
-;;(setq-default line-spacing 8)
+(setq-default line-spacing 8)
 
 ;; disable elements
 (scroll-bar-mode -1)
