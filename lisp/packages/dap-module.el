@@ -154,6 +154,36 @@
   ;; node
   ;; Needs the one-time command `dap-node-setup` before useable
   (require 'dap-node)
+  (dap-register-debug-template
+   "Attach to Nodemon"
+   (list :type "node"
+	 :request "attach"
+	 :port 9229
+	 :name "Launch via NPM"
+	 :restart t
+	 :timeout 1000
+	 :args []
+	 :skipFiles ["<node_internals>/**"]))
+
+  (dap-register-debug-template
+   "Launch via NPM"
+   (list :type "node"
+	 :request "launch"
+	 :name "Launch via NPM"
+	 :runtimeExecutable "npm"
+	 :args ["run-script" "debug"]
+	 :port 9229
+	 :skipFiles ["<node_internals>/**"]))
+
+  (dap-register-debug-template
+   "Node: Launch File"
+   (list :type "node"
+	 :request "launch"
+	 :name "Node: Launch File"
+	 :program nil
+	 :cwd "${workspaceFolder}"
+	 :skipFiles ["<node_internals>/**"]))
+
 
   :bind
   (:map evil-normal-state-map ("<leader>db" . dap-breakpoint-toggle))
