@@ -2,18 +2,18 @@
 
 ;; kill function
 (defun my/setup-vterm-sentinel ()
-  "Kill buffer when vterm process exits."
+  "Close vterm window when the vterm shell process exits normally."
   (let ((proc (get-buffer-process (current-buffer))))
     (when proc
       (set-process-sentinel
        proc
        (lambda (process event)
-         (when (string= event "finished\n")
-	   (let ((buf (process-buffer process)))
-	     (when (buffer-live-p buf)
-	       (let ((win (get-buffer-window buf)))
-		 (when win (delete-window win)))
-               (kill-buffer buf)))))))))
+         (when (and (eq (process-status process) 'exit)
+                    (buffer-live-p (process-buffer process)))
+           (let ((buf (process-buffer process)))
+             (when-let ((win (get-buffer-window buf)))
+               (delete-window win))
+             (kill-buffer buf))))))))
 
 ;; horizontal toggle
 (defun my/horizontal-vterm ()
@@ -47,12 +47,31 @@
           (vterm)
 	  (my/setup-vterm-sentinel))))))
 
+;; fullscreen toggle
+(defun my/fullscreen-vterm ()
+  "Toggle a persistent vterm in the current window, deleting all others."
+  (interactive)
+  (let* ((buf-name "*vterm*")
+         (buf (get-buffer buf-name)))
+    (if (and buf (get-buffer-window buf))
+        ;; hide if visible
+        (progn
+          (kill-buffer buf)
+          (when (one-window-p) (delete-other-windows)))
+      (progn
+        (delete-other-windows)
+        (if buf
+            (switch-to-buffer buf)
+          (vterm))))))
+          ;; (my/setup-vterm-sentinel))))))
+
 ;; CONFIG ;;
 
 (use-package vterm
   :defer t
   :bind (:map evil-normal-state-map
 	      ("<leader>tt" . #'my/vertical-vterm)
+	      ("<leader>tf" . #'my/fullscreen-vterm)
 	      ("<leader>th" . #'my/horizontal-vterm))
   :hook
   (vterm-mode . (lambda () (display-line-numbers-mode 0)))
