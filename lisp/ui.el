@@ -19,8 +19,8 @@
                       :foreground "#e0def4"))
 
 ;; font
-(set-frame-font "JetBrainsMono Nerd Font-12" t t)
-(setq-default line-spacing 8)
+(set-frame-font "JetBrainsMono Nerd Font-13" t t)
+;; (setq-default line-spacing 8)
 
 ;; disable elements
 (scroll-bar-mode -1)

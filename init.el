@@ -35,5 +35,5 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; load modules
-(require 'packages)
 (require 'ui)
+(require 'packages)
