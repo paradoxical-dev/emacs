@@ -6,6 +6,7 @@
 
 ;; load packages
 (require 'evil-module)
+(require 'editor-module)
 (require 'search-module)
 (require 'shell-module)
 (require 'project-module)
