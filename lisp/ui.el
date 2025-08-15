@@ -15,6 +15,9 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
+;; set scroll off
+(setq scroll-margin 8)
+
 ;; which key
 (which-key-mode 1)
 (setq which-key-idle-delay 0.1)
