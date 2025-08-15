@@ -16,5 +16,6 @@
 (require 'dap-module)
 (require 'completion-module)
 (require 'rest-module)
+(require 'sql-module)
 
 (provide 'packages)

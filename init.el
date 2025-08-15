@@ -36,4 +36,5 @@
 
 ;; load modules
 (require 'ui)
+(require 'core)
 (require 'packages)
