@@ -23,8 +23,22 @@
 (use-package darkroom
   :straight '(:type git :host github :repo "joaotavora/darkroom")
   :config
-  (setq darkroom-text-scale-increase 1)
+  (setq darkroom-text-scale-increase 0.8)
   :bind
   (:map evil-normal-state-map ("<leader>z" . darkroom-mode)))
+
+;; TODO HIGHLIGHTS ;;
+
+(use-package hl-todo
+  :ensure t
+  :config
+  (setq hl-todo-keyword-faces
+	'(("TODO"   . "#ff0000")
+	  ("FIXME"  . "#FF0000")
+	  ("DEBUG"  . "#A020F0")
+	  ("GOTCHA" . "#FF4500")
+	  ("INFO"   . "#1E90FF")
+	  ("STUB"   . "#1E90FF")))
+  :hook (prog-mode . hl-todo-mode))
 
 (provide 'editor-module)
