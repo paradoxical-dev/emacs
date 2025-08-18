@@ -54,9 +54,14 @@
 	gc-cons-threshold 100000000
 	lsp-use-plists 1
 	lsp-log-io nil)
+  (setq flymake-show-diagnostics-at-end-of-line t)
   ;; server specific ;;
   ;; nix
   (setq lsp-nix-auto-eval-inputs nil))
+
+;; (use-package flycheck
+;;   :ensure t
+;;   :defer 0)
 
 ;; consult replacement for helm-lsp
 (use-package consult-lsp

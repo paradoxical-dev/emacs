@@ -57,6 +57,7 @@
 
 
 ;; IMPLEMENTATION ;;
+
 (use-package dap-mode
   :ensure t
   :after lsp-mode
@@ -137,11 +138,11 @@
 	 :args []))
 
   ;; firefox
-  ;; Needs the one-time command `dap-firefox-setup` before useable
+  ;; INFO: Needs the one-time command `dap-firefox-setup` before useable
   (require 'dap-firefox)
 
   ;; chrome
-  ;; Needs the one-time command `dap-chrome-setup` before useable
+  ;; INFO: Needs the one-time command `dap-chrome-setup` before useable
   (require 'dap-chrome)
   (dap-register-debug-provider "chrome-dynamic" #'my/dap-chrome-provider)
   (dap-register-debug-template
@@ -152,7 +153,7 @@
 	 :webRoot "${workspaceFolder}/src"))
 
   ;; node
-  ;; Needs the one-time command `dap-node-setup` before useable
+  ;; INFO: Needs the one-time command `dap-node-setup` before useable
   (require 'dap-node)
   (dap-register-debug-template
    "Attach to Nodemon"

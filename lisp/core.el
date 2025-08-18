@@ -36,4 +36,12 @@
   :ensure t
   :defer 0)
 
+;; nerd fonts ;;
+
+;; INFO: provides nerd icons for tui/gui compatibility
+(use-package nerd-icons
+  :ensure t
+  :config
+  (setq nerd-icons-color-icons t))
+
 (provide 'core)
