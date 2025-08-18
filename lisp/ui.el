@@ -3,7 +3,7 @@
 (require 'rose)
 
 ;; font
-(set-frame-font "JetBrainsMono Nerd Font-13" t t)
+(set-frame-font "JetBrainsMono Nerd Font-14" t t)
 ;; (setq-default line-spacing 8)
 
 ;; disable elements
