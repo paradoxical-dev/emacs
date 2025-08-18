@@ -67,6 +67,11 @@
   :config
   (projectile-mode +1)
   :bind
-  (:map evil-normal-state-map ("<leader>." . projectile-find-file)))
+  (:map evil-normal-state-map
+	("<leader>pp" . projectile-switch-project)
+	("<leader>pc" . projectile-compile-project)
+	("<leader>pi" . projectile-install-project)
+	("<leader>px" . projectile-test-project)
+	("<leader>." . projectile-find-file)))
 
 (provide 'project-module)
