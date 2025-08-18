@@ -33,12 +33,13 @@
   :ensure t
   :config
   (setq hl-todo-keyword-faces
-	'(("TODO"   . "#ff0000")
-	  ("FIXME"  . "#FF0000")
-	  ("DEBUG"  . "#A020F0")
-	  ("GOTCHA" . "#FF4500")
-	  ("INFO"   . "#1E90FF")
-	  ("STUB"   . "#1E90FF")))
+	'(("TODO"    . "#a5eaf3")
+	  ("FIXME"   . "#a5eaf3")
+	  ("DEBUG"   . "#f16b66")
+	  ("GOTCHA"  . "#fdac3b")
+	  ("WARNING" . "#f4e66c")
+	  ("INFO"    . "#75f3b3")
+	  ("STUB"    . "#ab7deb")))
   :hook (prog-mode . hl-todo-mode))
 
 (provide 'editor-module)
