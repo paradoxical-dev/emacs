@@ -18,6 +18,9 @@
 ;; set scroll off
 (setq scroll-margin 8)
 
+;; set custom modeline
+(require 'custom-modeline)
+
 ;; which key
 (which-key-mode 1)
 (setq which-key-idle-delay 0.1)
