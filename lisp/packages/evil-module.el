@@ -14,20 +14,22 @@
 ;; undo-tree for C-r map
 (use-package undo-tree
   :ensure t
-  :config
-  (global-undo-tree-mode))
+  :hook
+  (emacs-startup . global-undo-tree-mode))
 
 ;; maps in other tools
 (use-package evil-collection
   :ensure t
-  :after evil
+  :defer 0
+  ;; :after evil
   :config
   (evil-collection-init))
 
 ;; surround for text objs
 (use-package evil-surround
   :ensure t
-  :after evil
+  :defer 0
+  ;; :after evil
   :hook ((prog-mode . evil-surround-mode)
 	 (text-mode . evil-surround-mode)
 	 (org-mode . evil-surround-mode)))
@@ -35,7 +37,8 @@
 ;; auto comment
 (use-package evil-commentary
   :ensure t
-  :after evil
+  :defer 0
+  ;; :after evil
   :hook ((prog-mode . evil-commentary-mode)
 	 (text-mode . evil-commentary-mode)
 	 (org-mode . evil-commentary-mode)))
@@ -43,7 +46,8 @@
 ;; better search
 (use-package evil-visualstar
   :ensure t
-  :after evil
+  :defer 0
+  ;; :after evil
   :hook ((prog-mode . evil-visualstar-mode)
 	 (text-mode . evil-visualstar-mode)
 	 (org-mode . evil-visualstar-mode)))

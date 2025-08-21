@@ -26,7 +26,7 @@
 ;; set var to make straight use use-package by default
 (setq straight-use-package-by-default t)
 
-;; WARN: REMOVE THIS AFTER OPTIMIZATIONS
+;; WARNING: REMOVE THIS AFTER OPTIMIZATIONS
 (setq use-package-verbose t)
 
 ;; MODULES ;;

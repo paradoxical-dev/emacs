@@ -1,13 +1,14 @@
 ;; INFO: Project and file management
 
 (use-package transient
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package dirvish
   :ensure t
-  :init
-  (dirvish-override-dired-mode)
-  :after transient
+  :defer t
+  :commands dirvish
+  :hook (emacs-startup . dirvish-override-dired-mode)
   :custom
   (dirvish-quick-access-entries ; It's a custom option, `setq' won't work
    '(("d" "~/Downloads/"                "Downloads")

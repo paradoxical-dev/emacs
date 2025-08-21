@@ -29,6 +29,11 @@
 
 ;; TODO HIGHLIGHTS ;;
 
+(defun my/defer-hl-todo ()
+  "Don't enable hl-todo in scratch buffer."
+  (unless (string= (buffer-name) "*scratch*")
+    (hl-todo-mode 1)))
+
 (use-package hl-todo
   :ensure t
   :config
@@ -40,6 +45,6 @@
 	  ("WARNING" . "#f4e66c")
 	  ("INFO"    . "#75f3b3")
 	  ("STUB"    . "#ab7deb")))
-  :hook (prog-mode . hl-todo-mode))
+  :hook (prog-mode . my/defer-hl-todo))
 
 (provide 'editor-module)

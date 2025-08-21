@@ -1,12 +1,19 @@
 ;; INFO: This module contains all packages and configuraiton related to completion
 ;; It includes the backend systems for completion functions and frontend displays
 
+(defun my/defer-corfu ()
+  "Enable Corfu in `prog-mode` unless in *scratch* buffer."
+  (unless (string= (buffer-name) "*scratch*")
+    (corfu-mode 1)
+    (corfu-popupinfo-mode 1)))
+
 ;; completion frontend
 (use-package corfu
   :ensure t
   :defer t
-  :hook ((prog-mode . corfu-mode)
-	 (prog-mode . corfu-popupinfo-mode)
+  :hook ((prog-mode . my/defer-corfu)
+  ;; :hook ((prog-mode . corfu-mode)
+  ;; 	 (prog-mode . corfu-popupinfo-mode)
 	 (text-mode . corfu-mode)
 	 (text-mode . corfu-popupinfo-mode)
 	 (org-mode . corfu-mode)
@@ -15,6 +22,14 @@
   (setq corfu-auto t
 	corfu-quit-no-match 'separator)
   ;; (setq corfu-quit-no-match 'separator)
+  (set-face-attribute 'corfu-default nil :inherit 'nano-subtle)
+  (set-face-attribute 'corfu-border nil
+		      :foreground "unspecified"
+		      :background "unspecified"
+		      ;; :foreground (face-background 'corfu-default)
+		      ;; :background (face-background 'corfu-default)
+		      :inherit nil)
+
   (setq corfu-popupinfo-delay 0.1))
 
 (use-package nerd-icons-corfu
@@ -24,13 +39,11 @@
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 ;; terminal support
-(use-package corfu-terminal
-  :ensure t
-  :after corfu
-  :config
-  ;; only enables in terminal session
-  ;; removes popupinfo with echo for documentation
-  (unless (display-graphic-p)
+(unless (display-graphic-p)
+  (use-package corfu-terminal
+    :after corfu
+    :config
+    ;; remove popupinfo, enable echo, enable terminal support
     (corfu-popupinfo-mode -1)
     (setq corfu-echo-delay 0.1)
     (corfu-echo-mode +1)
@@ -63,16 +76,8 @@
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
   (add-hook 'completion-at-point-functions #'cape-file)
   (add-hook 'completion-at-point-functions #'cape-keyword))
-  ;; (add-hook 'completion-at-point-functions #'codeium-completion-at-point))
 
 ;; ai-completions ;;
-
-;; WARN: this will have to be user made.
-;; Create the secrets.el file in the root of your config directory and add:
-;; `(setq codeium-api-key <your-api-key>)`
-(let ((secrets-file (expand-file-name "secrets.el" user-emacs-directory)))
-  (when (file-exists-p secrets-file)
-    (load secrets-file)))
 
 (defvar my/comingle-is-enabled t)
 (use-package comingle
@@ -112,6 +117,12 @@
   (defun my/comingle-toggle (&optional state)
     "Toggle comingle's enabled state."
     (interactive)
+
+    ;; load my api key
+    (let ((secrets-file (expand-file-name "secrets.el" user-emacs-directory)))
+      (when (file-exists-p secrets-file)
+	(load secrets-file)))
+
     (let ((current-state (or state comingle-state)))
       (cond
        ;; First condition: Is comingle currently enabled?

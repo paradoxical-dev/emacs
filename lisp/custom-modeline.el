@@ -280,91 +280,31 @@
      (:eval (my/session-directory-segment))
      (:eval (my/buffer-percentage-segment)))))
 
-;; ;; activate common-header-mode-line using custom string generator
-;; (with-eval-after-load "common-header-mode-line-autoloads"
-;;   (setopt common-header-mode-line-update-delay 0.01)
-;;   (add-hook 'window-setup-hook
-;;             (lambda ()
-;;               (common-mode-line-mode 1)
-;; 	      (per-window-mode-line-mode -1)
-;; 	      (set-face-background 'mode-line "undefined")
-;; 	      (set-face-background 'mode-line-active "undefined")
-;; 	      (set-face-background 'mode-line-inactive "undefined")
-;;               ;; inject custom per-frame update function
-;;               (setq per-frame-mode-line-update-display-function
-;;                     (lambda (display)
-;;                       (let ((buf (cdr (assq 'buf display))))
-;;                         (with-current-buffer buf
-;;                           (setq-local buffer-read-only nil
-;;                                       tab-width 8)
-;;                           ;; generate custom mode-line string
-;;                           (let ((mode-l-str (my/common-header-mode-line-string)))
-;;                             (erase-buffer)
-;;                             (insert mode-l-str)
-;;                             (goto-char (point-min))
-;;                             (setq-local mode-line-format nil
-;;                                         header-line-format nil
-;;                                         buffer-read-only t)))))))))
-
-;; WARNING: Experminting with nano mode
-
-(use-package nano-modeline
-  :straight (:type git :host github :repo "rougier/nano-modeline" :branch "rewrite")
-  :hook
-  (text-mode             . nano-modeline)
-  (org-mode              . nano-modeline)
-  (vterm-mode             . nano-modeline)
-  (messages-buffer-mode  . nano-modeline)
-  (prog-mode             . nano-modeline))
-
-(setq default-frame-alist
-      (append (list
-	           '(min-height . 1)
-               '(height     . 45)
-	           '(min-width  . 1)
-               '(width      . 81)
-               '(vertical-scroll-bars . nil)
-               '(internal-border-width . 20)
-               '(left-fringe    . 1)
-               '(right-fringe   . 1)
-               '(tool-bar-lines . 0)
-               '(menu-bar-lines . 0))))
-
-(setq inhibit-startup-screen t
-      inhibit-startup-message t
-      inhibit-startup-echo-area-message t
-      initial-scratch-message nil)
-
-(setq window-divider-default-right-width 24)
-;; (setq window-divider-default-bottom-width 24)
-(setq window-divider-default-places 'right-only)
-(window-divider-mode 1)
-
-(setq widget-image-enable nil) ; no checkbox icons, just text
-(setq org-hide-emphasis-markers t) ; hides *bold* markers in Org mode
-(setq x-underline-at-descent-line t) ; prettier underlines
-
-(add-hook 'term-mode-hook
-	  (lambda () (setq buffer-display-table (make-display-table))))
-
-(set-face-background 'window-divider (face-background 'default))
-(set-face-background 'window-divider-first-pixel (face-background 'default))
-(set-face-background 'window-divider-last-pixel (face-background 'default))
-
-(set-face-foreground 'window-divider (face-background 'default))
-(set-face-foreground 'window-divider-first-pixel (face-background 'default))
-(set-face-foreground 'window-divider-last-pixel (face-background 'default))
-;; (set-face-foreground 'window-divider (face-foreground 'default))
-;; (set-face-foreground 'window-divider-first-pixel (face-foreground 'default))
-;; (set-face-foreground 'window-divider-last-pixel (face-foreground 'default))
-(set-face-attribute 'window-divider nil :distant-foreground (face-background 'default))
-
-(set-face-background 'mode-line-inactive (face-background 'default))
-(set-face-background 'mode-line-active (face-background 'default))
-
-
-(use-package nano-box
-  :straight (:type git :host github :repo "rougier/nano-tools"))
+;; activate common-header-mode-line using custom string generator
+(with-eval-after-load "common-header-mode-line-autoloads"
+  (setopt common-header-mode-line-update-delay 0.01)
+  (add-hook 'window-setup-hook
+            (lambda ()
+              (common-mode-line-mode 1)
+	      (per-window-mode-line-mode -1)
+	      (set-face-background 'mode-line "undefined")
+	      (set-face-background 'mode-line-active "undefined")
+	      (set-face-background 'mode-line-inactive "undefined")
+              ;; inject custom per-frame update function
+              (setq per-frame-mode-line-update-display-function
+                    (lambda (display)
+                      (let ((buf (cdr (assq 'buf display))))
+                        (with-current-buffer buf
+                          (setq-local buffer-read-only nil
+                                      tab-width 8)
+                          ;; generate custom mode-line string
+                          (let ((mode-l-str (my/common-header-mode-line-string)))
+                            (erase-buffer)
+                            (insert mode-l-str)
+                            (goto-char (point-min))
+                            (setq-local mode-line-format nil
+                                        header-line-format nil
+                                        buffer-read-only t)))))))))
 
 (provide 'custom-modeline)
 ;;; custom-modeline.el ends here
