@@ -1,6 +1,7 @@
 ;; theme
 (add-to-list 'load-path (expand-file-name "lisp/themes" user-emacs-directory))
-(require 'rose)
+;; (require 'rose)
+(require 'nano-dark)
 
 ;; font
 (set-frame-font "JetBrainsMono Nerd Font-14" t t)
@@ -20,6 +21,9 @@
 
 ;; set custom modeline
 (require 'custom-modeline)
+
+;; WARNING: EXPERIMENT
+(require 'nano-module)
 
 ;; which key
 (which-key-mode 1)
