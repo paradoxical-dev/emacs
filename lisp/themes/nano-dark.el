@@ -1,11 +1,19 @@
+;;; nano-dark.el --- Summary
+;;; Commentary:
+;; nano dark theme with custom face overrides
+
+;;; Code:
+
 (use-package nano-theme
   :straight (:type git :host github :repo "rougier/nano-theme"))
 
 (load-theme 'nano-dark t)
 
-(set-face-attribute 'default nil :background "#000000")
+(set-face-attribute 'default nil :background "#000000" :foreground "#e0def4")
+(set-face-background 'cursor "#dddbe7")
 
-(set-face-attribute 'window-divider nil :distant-foreground (face-foreground 'default))
+(set-face-attribute 'window-divider nil
+		    :distant-foreground (face-foreground 'default))
 
 (set-face-background 'header-line "#191724")
 (with-eval-after-load 'nano-modeline
@@ -23,5 +31,8 @@
 		    :weight 'normal
 		    :italic t
 		    :foreground "#65617b")
+(set-face-attribute 'font-lock-string-face nil :inherit 'nano-popout)
+(set-face-attribute 'isearch nil :background "#a0bbcb" :foreground "#000000")
 
 (provide 'nano-dark)
+;;; nano-dark.el ends here

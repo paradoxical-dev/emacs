@@ -20,7 +20,7 @@
 (setq scroll-margin 8)
 
 ;; set custom modeline
-(require 'custom-modeline)
+;; (require 'custom-modeline)
 
 ;; WARNING: EXPERIMENT
 (require 'nano-module)
