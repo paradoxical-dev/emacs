@@ -49,7 +49,8 @@
   (setq lsp-enable-symbol-highlighting t
 	lsp-enable-snippet t
 	lsp-idle-delay 0.25
-	lsp-headerline-breadcrumb-segments '(project file symbols)
+	;; lsp-headerline-breadcrumb-segments '(project file symbols)
+	lsp-headerline-breadcrumb-enable nil
 	lsp-warn-no-matched-clients nil
 	gc-cons-threshold 100000000
 	lsp-use-plists 1
