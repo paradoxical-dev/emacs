@@ -62,7 +62,26 @@
 
 ;; (use-package flycheck
 ;;   :ensure t
-;;   :defer 0)
+;;   :defer 0
+;;   :hook
+;;   (after-init . global-flycheck-mode))
+
+;; (use-package flyover
+;;   :ensure t
+;;   :after flycheck
+;;   :hook
+;;   (flycheck-mode . flyover-mode)
+;;   (flymake-mode . flyover-mode)
+;;   :config
+;;   (setq flyover-levels '(error warning info))
+;;   (setq flyover-background-lightness 45)
+;;   (setq flyover-use-theme-colors t)
+;;   (setq flyover-debounce-interval 0.2) 
+;;   (setq flyover-line-position-offset 1)
+;;   (setq flyover-wrap-messages nil)
+;;   ;; (setq flyover-max-line-length 80)
+;;   (setq flyover-checkers '(flycheck flymake)))
+
 
 ;; consult replacement for helm-lsp
 (use-package consult-lsp
@@ -94,6 +113,8 @@
   ;; doc
   (setq lsp-ui-doc-position 'at-point
 	lsp-ui-doc-border "none")
+
+  (setq lsp-ui-sideline-show-diagnostics nil)
 
   ;; peek ;;
 

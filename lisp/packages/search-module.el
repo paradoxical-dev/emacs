@@ -9,6 +9,25 @@
 	("C-j" . vertico-next)
 	("C-k" . vertico-previous)))
 
+;; (use-package vertico-posframe
+;;   :ensure t
+;;   :after vertico
+;;   :config
+;;   (setq vertico-posframe-parameters
+;; 	'((left-fringe . 20)
+;; 	  (right-fringe . 20)))
+
+;;   ;; (setq vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-center)
+;;   (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center)
+
+;;   (set-face-background 'vertico-posframe "#191724")
+;;   (set-face-foreground 'vertico-posframe-border "#191724")
+;;   (set-face-background 'vertico-posframe-border "#191724")
+
+;;   ;; (setq vertico-posframe-min-width (frame-width))
+
+;;   (vertico-posframe-mode 1))
+
 ;; persistent history
 (use-package savehist
   :init
