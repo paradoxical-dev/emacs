@@ -9,7 +9,21 @@
 
 (load-theme 'nano-dark t)
 
-(set-face-attribute 'default nil :background "#000000" :foreground "#e0def4")
+;; CUSTOM FACES ;;
+
+;;
+;; UI
+;;
+
+(if (display-graphic-p)
+    (set-face-attribute 'default nil
+                        :background "#000000"
+                        :foreground "#e0def4")
+  (progn
+    (set-face-attribute 'default nil
+                        :background "undefined"
+                        :foreground "#e0def4")))
+
 (set-face-background 'cursor "#dddbe7")
 
 (set-face-attribute 'window-divider nil
@@ -22,9 +36,17 @@
 (set-face-attribute 'mode-line nil :box nil)
 (set-face-attribute 'mode-line-inactive nil :box nil)
 
+;;
+;; NANO
+;;
+
 (set-face-foreground 'nano-faded "#65617b")
 (set-face-foreground 'nano-salient "#b49bd7")
 (set-face-background 'nano-subtle "#191724")
+
+;;
+;; EDITOR FACES
+;;
 
 (set-face-attribute 'font-lock-comment-face nil
 		    :font "Victor Mono-14"

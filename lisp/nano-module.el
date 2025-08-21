@@ -18,6 +18,7 @@
 
 (require 'nano-modeline-module)
 (require 'nano-layout)
+(require 'nano-defaults)
 
 (provide 'nano-module)
 ;;; nano.el ends here
