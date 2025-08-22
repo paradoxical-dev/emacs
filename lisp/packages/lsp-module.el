@@ -60,27 +60,27 @@
   ;; nix
   (setq lsp-nix-auto-eval-inputs nil))
 
-;; (use-package flycheck
-;;   :ensure t
-;;   :defer 0
-;;   :hook
-;;   (after-init . global-flycheck-mode))
+(use-package flycheck
+  :ensure t
+  ;; :defer 0
+  :hook
+  (emacs-startup . global-flycheck-mode))
 
-;; (use-package flyover
-;;   :ensure t
-;;   :after flycheck
-;;   :hook
-;;   (flycheck-mode . flyover-mode)
-;;   (flymake-mode . flyover-mode)
-;;   :config
-;;   (setq flyover-levels '(error warning info))
-;;   (setq flyover-background-lightness 45)
-;;   (setq flyover-use-theme-colors t)
-;;   (setq flyover-debounce-interval 0.2) 
-;;   (setq flyover-line-position-offset 1)
-;;   (setq flyover-wrap-messages nil)
-;;   ;; (setq flyover-max-line-length 80)
-;;   (setq flyover-checkers '(flycheck flymake)))
+(use-package flyover
+  :ensure t
+  :after flycheck
+  :hook
+  (flycheck-mode . flyover-mode)
+  (flymake-mode . flyover-mode)
+  :config
+  (setq flyover-levels '(error warning info))
+  (setq flyover-background-lightness 45)
+  (setq flyover-use-theme-colors t)
+  (setq flyover-debounce-interval 0.2) 
+  (setq flyover-line-position-offset 1)
+  (setq flyover-wrap-messages nil)
+  ;; (setq flyover-max-line-length 80)
+  (setq flyover-checkers '(flycheck flymake)))
 
 
 ;; consult replacement for helm-lsp

@@ -17,9 +17,11 @@ url/
 *.tmp
 .dap-breakpoints
 .lsp-session*
+.org-id-locations
 bookmarks
 dap-ui-repl*
 history
+org-roam.db
 projectile-bookmarks.eld
 projects
 recentf

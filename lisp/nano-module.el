@@ -21,4 +21,4 @@
 (require 'nano-defaults)
 
 (provide 'nano-module)
-;;; nano.el ends here
+;;; nano-module.el ends here

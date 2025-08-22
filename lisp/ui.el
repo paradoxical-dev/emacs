@@ -1,3 +1,10 @@
+;;; lexical-binding: t -*-
+;;; ui.el --- Summary
+;;; Commentary:
+;; UI configuration
+
+;;; Code:
+
 ;; theme
 (add-to-list 'load-path (expand-file-name "lisp/themes" user-emacs-directory))
 ;; (require 'rose)
@@ -30,3 +37,4 @@
 (setq which-key-idle-delay 0.1)
 
 (provide 'ui)
+;;; ui.el ends here

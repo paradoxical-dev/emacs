@@ -24,6 +24,9 @@
 ;; this window. It takes care of setting the text to white and hiding
 ;; the cursor such that it is mostly invisible.
 ;; ---------------------------------------------------------------------
+
+;;; Code:
+
 (require 'mini-frame)
 
 (with-eval-after-load 'mini-frame
@@ -67,3 +70,4 @@
   
 (mini-frame-mode 1)
 (provide 'nano-minibuffer)
+;;; nano-minibuffer.el ends here
