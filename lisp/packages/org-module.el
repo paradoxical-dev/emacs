@@ -37,29 +37,25 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t))
 
-;; book mode
+
+;;           ;;
+;; Book Mode ;;
+;;           ;;
+
 ;; provides centered reading/editing with custom heeader and mode lines
 
 (defun my/book-mode-setup ()
   "Setup book mode while preserving current window configuration."
   (book-mode)
-  ;; preserve frame padding
-  (let ((f (selected-frame)))
-    (set-frame-parameter f 'min-height 1)
-    (set-frame-parameter f 'height 45)
-    (set-frame-parameter f 'min-width 1)
-    (set-frame-parameter f 'width 81)
-    (set-frame-parameter f 'vertical-scroll-bars nil)
-    (set-frame-parameter f 'internal-border-width 20)
-    (set-frame-parameter f 'left-fringe 8)
-    (set-frame-parameter f 'right-fringe 8)
-    (set-frame-parameter f 'tool-bar-lines 0)
-    (set-frame-parameter f 'menu-bar-lines 0))
-
-  ;; window divider
-  (setq window-divider-default-right-width 24)
-  (setq window-divider-default-places 'right-only)
-  (window-divider-mode 1))
+  (run-at-time "0.1 sec" nil
+               (lambda ()
+                 (let ((f (selected-frame)))
+                   (set-frame-parameter f 'internal-border-width 20)
+                   (set-frame-parameter f 'left-fringe 8)
+                   (set-frame-parameter f 'right-fringe 8))
+                 (setq window-divider-default-right-width 24
+                       window-divider-default-places 'right-only)
+                 (window-divider-mode 1))))
 
 (use-package book-mode
   :straight (:type git :host github :repo "rougier/book-mode")
@@ -70,7 +66,6 @@
   (setq book-mode-bottom-margin 0.75)
   :hook
   (org-mode . my/book-mode-setup))
-  ;; (org-mode . book-mode))
 
 ;; olivetti to pair with book-mode
 (use-package olivetti
