@@ -4,20 +4,47 @@
 
 ;;; Code:
 
+;;                  ;;
+;; Builtin packages ;;
+;;                  ;;
+
 ;; will not pull in org-mode
 (use-package org
   :straight (:type built-in)
   :defer 0)
 
+;; header faces
+(custom-set-faces
+ '(org-level-1 ((t (:height 1.5 :weight bold))))
+ '(org-level-2 ((t (:height 1.3 :weight bold))))
+ '(org-level-3 ((t (:height 1.1 :weight bold))))
+ '(org-level-4 ((t (:height 1.0 :weight semi-bold))))
+ '(org-level-5 ((t (:height 0.95 :weight normal)))))
+
 ;; global modern mode
 (with-eval-after-load 'org (global-org-modern-mode))
+(setq
+ org-hide-emphasis-markers t
+ org-pretty-entities t)
 
 ;; remove line numbers and wrap lines
 (add-hook 'org-mode-hook (lambda ()
                            (display-line-numbers-mode 0)
                            (visual-line-mode 1)))
 
-;; org-roam
+;; babel
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(( emacs-lisp . t)
+     ( python     . t)
+     ( shell      . t))))
+
+
+;;          ;;
+;; Org Roam ;;
+;;          ;;
+
 (use-package org-roam
   :after org
   :straight t
