@@ -56,5 +56,12 @@
 (set-face-attribute 'font-lock-string-face nil :inherit 'nano-popout)
 (set-face-attribute 'isearch nil :background "#a0bbcb" :foreground "#000000")
 
+;;
+;; ORG FACES
+;;
+
+(with-eval-after-load 'org
+  (set-face-background 'org-block "#17171e"))
+
 (provide 'nano-dark)
 ;;; nano-dark.el ends here

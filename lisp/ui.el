@@ -1,4 +1,3 @@
-;;; lexical-binding: t -*-
 ;;; ui.el --- Summary
 ;;; Commentary:
 ;; UI configuration
