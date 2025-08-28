@@ -22,6 +22,7 @@
 (require 'sql-module)
 (require 'org-module)
 (require 'rest-module)
+(require 'pdf-module)
 
 (provide 'packages)
 ;;; packages.el ends here
