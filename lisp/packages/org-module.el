@@ -24,6 +24,12 @@
 ;; global modern mode
 (with-eval-after-load 'org (global-org-modern-mode))
 (setq
+ org-modern-star 'replace
+ org-modern-replace-stars "◉○◈◇✳"
+ org-modern-fold-stars nil
+ org-modern-list '((?- . "•") (?+ . "◦") (?* . "◆"))
+ org-startup-with-inline-images t
+ org-startup-with-latex-preview t
  org-hide-emphasis-markers t
  org-pretty-entities t)
 
@@ -37,6 +43,7 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(( emacs-lisp . t)
+     ( latex      . t)
      ( python     . t)
      ( shell      . t))))
 
@@ -84,32 +91,7 @@
 ;; Book Mode ;;
 ;;           ;;
 
-;; provides centered reading/editing with custom heeader and mode lines
-
-(defun my/book-mode-setup ()
-  "Setup book mode while preserving current window configuration."
-  (book-mode)
-  (run-at-time "0.1 sec" nil
-               (lambda ()
-                 (let ((f (selected-frame)))
-                   (set-frame-parameter f 'internal-border-width 20)
-                   (set-frame-parameter f 'left-fringe 8)
-                   (set-frame-parameter f 'right-fringe 8))
-                 (setq window-divider-default-right-width 24
-                       window-divider-default-places 'right-only)
-                 (window-divider-mode 1))))
-
-(use-package book-mode
-  :straight (:type git :host github :repo "rougier/book-mode")
-  :defer t
-  :config
-  (setq book-mode-frame-border-color (face-background 'default))
-  (setq book-mode-top-margin 1.75)
-  (setq book-mode-bottom-margin 0.75)
-  :hook
-  (org-mode . my/book-mode-setup))
-
-;; olivetti to pair with book-mode
+;; centered reading/editing
 (use-package olivetti
   :ensure t
   :hook
