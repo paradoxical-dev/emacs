@@ -40,6 +40,16 @@
      ( python     . t)
      ( shell      . t))))
 
+;; custom agenda
+(use-package nano-agenda
+  :straight (:type git
+                   :host github
+                   :repo "rougier/nano-agenda"
+                   :branch "rewrite")
+  :after org
+  :config
+  (setq nano-agenda-header-show nil))
+
 
 ;;          ;;
 ;; Org Roam ;;
@@ -51,6 +61,11 @@
   :config
   (setq org-roam-directory "~/Org")
   (org-roam-db-autosync-mode)
+  (setq org-agenda-files (directory-files-recursively org-roam-directory "\\.org$"))
+  :hook
+  (org-roam-db-autosync-mode . (lambda ()
+                                 (setq org-agenda-files
+                                       (directory-files-recursively org-roam-directory "\\.org$"))))
   :bind
   (:map evil-normal-state-map
         ("<leader>oi" . org-roam-node-insert)
