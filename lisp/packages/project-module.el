@@ -1,4 +1,8 @@
+;;; project-module.el --- Summary
+;;; Commentary:
 ;; INFO: Project and file management
+
+;;; Code:
 
 (use-package transient
   :ensure t
@@ -8,7 +12,9 @@
   :ensure t
   :defer t
   :commands dirvish
-  :hook (emacs-startup . dirvish-override-dired-mode)
+  :hook
+  (emacs-startup . dirvish-override-dired-mode)
+  (dired-mode . (lambda () (display-line-numbers-mode 0)))
   :custom
   (dirvish-quick-access-entries ; It's a custom option, `setq' won't work
    '(("d" "~/Downloads/"                "Downloads")
@@ -24,7 +30,7 @@
         '(:left (sort symlink) :right (omit yank index)))
 
   (setq dirvish-attributes           ; The order *MATTERS* for some attributes
-        '(vc-state subtree-state nerd-icons collapse git-msg file-time file-size)
+        '(vc-state nerd-icons collapse git-msg file-time file-size)
         dirvish-side-attributes
         '(vc-state nerd-icons collapse file-size))
 
@@ -35,6 +41,15 @@
    '(dirvish-git-commit-message-face ((t (:background "#00000000"))))
    '(dirvish-subtree-guide ((t (:background "#00000000"))))
    '(dirvish-subtree-state ((t (:background "#00000000")))))
+
+  ;; better dir previews
+  (dirvish-define-preview eza (file)
+    "Use `eza' to generate directory preview."
+    :require ("eza") ; tell Dirvish to check if we have the executable
+    (when (file-directory-p file) ; we only interest in directories here
+      `(shell . ("eza" "--color=always" "--icons=always"
+                 "--group-directories-first" ,file))))
+  (push 'eza dirvish-preview-dispatchers)
 
   ;; any keymaps which need to be manually remapped due to evil
   (with-eval-after-load 'dirvish
@@ -53,7 +68,8 @@
       "v" 'dirvish-vc-menu
       "*" 'dirvish-mark-menu
       "y" 'dirvish-yank-menu
-      "N" 'dirvish-narrow
+      ;; "N" 'dirvish-narrow
+      "N" 'dirvish-new-empty-file-a
       "^" 'dirvish-history-last))
 
   :bind

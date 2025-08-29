@@ -1,16 +1,8 @@
+;;; ts-module.el --- Summary -*- lexical-binding: t; -*-
+;;; Commentary:
 ;; INFO: This controls treesitter for syntax highlighting and manipulation
 
-;; (use-package tree-sitter
-;;   :ensure t
-;;   :hook ((prog-mode . tree-sitter-mode)
-;; 	 (text-mode . tree-sitter-mode)
-;; 	 (org-mode . tree-sitter-mode))
-;;   :config
-;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
-;; (use-package tree-sitter-langs
-;;   :ensure t
-;;   :after tree-sitter)
+;;; Code:
 
 (when (and (fboundp 'treesit-available-p)
            (treesit-available-p))
@@ -19,16 +11,22 @@
 	  (tsx        . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
 	  (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
 	  (json       . ("https://github.com/tree-sitter/tree-sitter-json" "master" "src"))
+      (elisp      . ("https://github.com/Wilfred/tree-sitter-elisp" "master" "src"))
 	  (css        . ("https://github.com/tree-sitter/tree-sitter-css" "master" "src"))
+	  (c          . ("https://github.com/tree-sitter/tree-sitter-c" "master" "src"))
+      (cpp        . ("https://github.com/tree-sitter/tree-sitter-cpp" "master" "src"))
 	  (python     . ("https://github.com/tree-sitter/tree-sitter-python" "master" "src"))))
 
   (setq major-mode-remap-alist
         '((typescript-mode . typescript-ts-mode)
-          (tsx-mode . tsx-ts-mode)
-          (js-mode . js-ts-mode)
-          (json-mode . json-ts-mode)
-          (css-mode . css-ts-mode)
-          (python-mode . python-ts-mode)))
+          (tsx-mode        . tsx-ts-mode)
+          (js-mode         . js-ts-mode)
+          (json-mode       . json-ts-mode)
+          (elisp-mode      . elisp-ts-mode)
+          (css-mode        . css-ts-mode)
+          (c-mode          . c-ts-mode)
+          (c++-mode        . c++-ts-mode)
+          (python-mode     . python-ts-mode)))
 
   (dolist (lang '(typescript tsx javascript json css python))
     (unless (treesit-language-available-p lang)
@@ -40,3 +38,4 @@
 
 
 (provide 'ts-module)
+;;; ts-module.el ends here

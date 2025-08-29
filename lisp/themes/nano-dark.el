@@ -33,7 +33,7 @@
 (with-eval-after-load 'nano-modeline
   (set-face-background 'nano-modeline-face-buffer-read-write "#65617b")
   (set-face-foreground 'nano-modeline-face-secondary "#666680"))
-(set-face-attribute 'mode-line nil :box nil)
+(set-face-attribute 'mode-line nil :box nil :background (face-background 'default))
 (set-face-attribute 'mode-line-inactive nil :box nil)
 
 ;;

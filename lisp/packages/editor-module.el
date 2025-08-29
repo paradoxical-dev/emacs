@@ -1,5 +1,10 @@
+;;; editor-module.el --- Summary -*- lexical-binding: t; -*-
+
+;;; Commentary:
 ;; INFO: This module houses all editor specific packages and configs.
 ;; For instance, line highlights, mode lines, etc.
+
+;;; Code:
 
 ;; INDENT ;;
 
@@ -47,4 +52,11 @@
 	  ("STUB"    . "#ab7deb")))
   :hook (prog-mode . my/defer-hl-todo))
 
+;; COLOR PREVIEWS ;;
+
+(use-package colorful-mode
+  :ensure t
+  :hook (emacs-startup . global-colorful-mode))
+
 (provide 'editor-module)
+;;; editor-module.el ends here
