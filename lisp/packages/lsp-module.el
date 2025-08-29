@@ -75,7 +75,7 @@
   :config
   (setq flyover-levels '(error warning info))
   (setq flyover-background-lightness 45)
-  (setq flyover-use-theme-colors t)
+  ;; (setq flyover-use-theme-colors t)
   (setq flyover-debounce-interval 0.2) 
   (setq flyover-line-position-offset 1)
   (setq flyover-wrap-messages nil)

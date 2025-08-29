@@ -5,13 +5,16 @@
 ;;; Code:
 
 ;; theme
-(add-to-list 'load-path (expand-file-name "lisp/themes" user-emacs-directory))
+;; (add-to-list 'load-path (expand-file-name "lisp/themes" user-emacs-directory))
 ;; (require 'rose)
-(require 'nano-dark)
+;; (require 'nano-dark)
+
+(add-to-list 'custom-theme-load-path (expand-file-name "lisp/themes" user-emacs-directory))
+(load-theme 'poimandres t)
 
 ;; font
 (set-frame-font "JetBrainsMono Nerd Font-14" t t)
-;; (setq-default line-spacing 8)
+(setq-default line-spacing 8)
 
 ;; disable elements
 (scroll-bar-mode -1)
