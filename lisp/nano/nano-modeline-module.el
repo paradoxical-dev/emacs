@@ -73,18 +73,15 @@
   (vterm-mode . (lambda ()
                   (nano-modeline
                    nano-modeline-format-terminal 'header)))
+  (nano-agenda-mode      . (lambda ()
+                             (nano-modeline
+                              nano-modeline-format-nano-agenda 'header)))
   (org-agenda-mode       . (lambda ()
                              (nano-modeline
                               nano-modeline-format-org-agenda 'header)))
   (prog-mode             . nano-modeline))
 
 (setq-default mode-line-format nil)
-
-(with-eval-after-load 'nano-agenda
-  (advice-add 'nano-agenda :after
-              (lambda (&rest _)
-                (with-current-buffer "*nano-agenda*"
-                  (nano-modeline nano-modeline-format-nano-agenda 'header)))))
 
 (provide 'nano-modeline-module)
 ;;; nano-modeline-module.el ends here
