@@ -66,6 +66,9 @@
    `(lsp-face-semhl-parameter ((t (:foreground ,(cdr (assoc 'pink3 colors))))))
    `(lsp-face-semhl-method ((t (:foreground ,(cdr (assoc 'teal1 colors)) :slant italic))))
 
+   ;; languages
+   `(sh-quoted-exec ((t (:foreground ,(cdr (assoc 'pink3 colors)) :slant italic))))
+
    ;; MODE SPECIFIC ;;
 
    ;; magit
@@ -150,9 +153,30 @@
 
    ;; orderless
    `(orderless-match-face-0 ((t (:foreground ,(cdr (assoc 'pink3 colors))))))
-   `(orderless-match-face-0 ((t (:foreground ,(cdr (assoc 'teal1 colors))))))
-   `(orderless-match-face-0 ((t (:foreground ,(cdr (assoc 'red colors))))))
-   `(orderless-match-face-0 ((t (:foreground ,(cdr (assoc 'yellow colors))))))
+   `(orderless-match-face-1 ((t (:foreground ,(cdr (assoc 'teal1 colors))))))
+   `(orderless-match-face-2 ((t (:foreground ,(cdr (assoc 'red colors))))))
+   `(orderless-match-face-3 ((t (:foreground ,(cdr (assoc 'yellow colors))))))
+
+   ;; man
+   `(Man-overstrike ((t (:inherit bold :foreground ,(cdr (assoc 'blue2 colors))))))
+   `(Man-underline ((t (:inherit underline :foreground ,(cdr (assoc 'teal1 colors))))))
+
+   ;; org
+   `(org-drawer ((t (:foreground ,(cdr (assoc 'blueGray2 colors))))))
+   `(org-document-title ((t (:foreground ,(cdr (assoc 'teal1 colors)) :weight bold))))
+   `(org-code ((t (:foreground ,(cdr (assoc 'teal1 colors))))))
+   `(org-table ((t (:foreground ,(cdr (assoc 'blueGray1 colors))))))
+   `(org-block ((t (:background ,(cdr (assoc 'background2 colors))))))
+
+   `(org-agenda-date ((t (:foreground ,(cdr (assoc 'text colors)) :weight bold))))
+   `(org-agenda-date-today ((t (:foreground ,(cdr (assoc 'blue2 colors)) :inherit italic :weight bold))))
+   `(org-scheduled-previously ((t (:foreground ,(cdr (assoc 'red colors))))))
+   `(org-agenda-done ((t (:foreground ,(cdr (assoc 'text colors))))))
+   `(org-todo ((t (:foreground ,(cdr (assoc 'pink3 colors))))))
+   `(org-modern-done ((t (:inherit org-modern-label :background ,(cdr (assoc 'teal1 colors)) :foreground ,(cdr (assoc 'black colors))))))
+   `(org-headline-done ((t (:foreground ,(cdr (assoc 'text colors))))))
+   `(org-agenda-structure ((t (:foreground ,(cdr (assoc 'blueGray1 colors)) :weight bold))))
+   
 
    ;; TTY ;;
 
@@ -214,6 +238,10 @@
    `(fringe ((t (:background ,(cdr (assoc 'background3 colors))))))
    `(line-number ((t (:foreground ,(cdr (assoc 'blueGray3 colors))))))
    `(line-number-current-line ((t (:foreground ,(cdr (assoc 'text colors)) :weight bold))))
+
+   ;; remove blinking
+   `(ansi-color-slow-blink ((t (:box nil))))
+   `(ansi-color-fast-blink ((t (:box nil))))
 
    ;; Selection & Search
    `(isearch ((t (:background ,(cdr (assoc 'pink3 colors)) :foreground ,(cdr (assoc 'background2 colors)) :weight bold))))
