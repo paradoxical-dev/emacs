@@ -58,5 +58,11 @@
   :ensure t
   :hook (emacs-startup . global-colorful-mode))
 
+;; FOLDING ;;
+
+(use-package origami
+  :ensure t
+  :hook (prog-mode . origami-mode))
+
 (provide 'editor-module)
 ;;; editor-module.el ends here

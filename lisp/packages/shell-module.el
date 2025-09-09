@@ -1,4 +1,8 @@
+;;; shell-module.el --- shell integration -*- lexical-binding: t; -*-
+;;; Commentary:
 ;; TERM TOGGLES ;;
+
+;;; Code:
 
 ;; kill function
 (defun my/setup-vterm-sentinel ()
@@ -78,3 +82,4 @@
   :ensure t)
 
 (provide 'shell-module)
+;;; shell-module.el ends here
