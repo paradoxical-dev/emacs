@@ -1,4 +1,8 @@
+;;; evil-module.el --- Defines vim keymaps and behaviors through evil packages -*- lexical-binding: t; -*-
+;;; Commentary:
 ;; INFO: Defines vim keymaps and behaviors through evil packages
+
+;;; Code:
 
 ;; base
 (use-package evil
@@ -14,6 +18,10 @@
 ;; undo-tree for C-r map
 (use-package undo-tree
   :ensure t
+  :config
+  (defvar my-undo-dir   (expand-file-name "undo-tree-history/" user-emacs-directory))
+  (setq undo-tree-history-directory-alist `((".*" . ,my-undo-dir)))
+  (setq undo-tree-auto-save-history t)
   :hook
   (emacs-startup . global-undo-tree-mode))
 
@@ -53,3 +61,4 @@
 	 (org-mode . evil-visualstar-mode)))
 
 (provide 'evil-module)
+;;; evil-module.el ends here
