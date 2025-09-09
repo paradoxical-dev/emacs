@@ -1,4 +1,4 @@
-;;; ui.el --- Summary
+;;; ui.el --- Summary -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;; UI configuration
 
@@ -14,12 +14,13 @@
 
 ;; font
 (set-frame-font "JetBrainsMono Nerd Font-14" t t)
-(setq-default line-spacing 8)
+(setq-default line-spacing 6)
 
 ;; disable elements
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(blink-cursor-mode -1)
 
 ;; relative line numbers
 (setq display-line-numbers-type 'relative)
