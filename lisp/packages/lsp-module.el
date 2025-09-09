@@ -28,6 +28,34 @@
   :ensure t
   :mode "\\.rs\\'")
 
+;; qml
+(use-package qml-ts-mode
+  :straight (:type git :host github :repo "xhcoding/qml-ts-mode")
+  :after lsp-mode
+  :mode ("\\.qml\\'" "\\.qmljs\\'")
+  :config
+  (add-to-list 'lsp-language-id-configuration '(qml-ts-mode . "qml-ts"))
+(lsp-register-client
+ (make-lsp-client
+  :new-connection (lsp-stdio-connection
+                   ;; WARNING: Need to remove this after moving from NixOS
+                   ;; I fucking hate NixOS
+                   '("qmlls"
+                     "-I" "/home/gitmoney/.config/quickshell"   ;; custom module
+                     "-I" "/nix/store/bijr4q2zjgxj06v074d3icp3nix1qnkk-quickshell-0.1.0/lib/qt-6/qml" ;; Quickshell
+                     "-I" "/nix/store/g0ahmk2wixwwibdb49p29l69vhm6ymwa-qtdeclarative-6.9.0/lib/qt-6/qml")) ;; QtQuick
+  :activation-fn (lsp-activate-on "qml-ts")
+  :server-id 'qmlls)))
+
+  ;; (lsp-register-client
+  ;;  (make-lsp-client :new-connection (lsp-stdio-connection '("qmlls -I /home/gitmoney//.config/quickshell:/nix/store/g0ahmk2wixwwibdb49p29l69vhm6ymwa-qtdeclarative-6.9.0/lib/qt6/qml:/nix/store/bijr4q2zjgxj06v074d3icp3nix1qnkk-quickshell-0.1.0/"))
+  ;;                   :activation-fn (lsp-activate-on "qml-ts")
+  ;;                   :server-id 'qmlls)))
+
+  ;; (add-hook 'qml-ts-mode-hook (lambda ()
+  ;;                               (setq-local electric-indent-chars '(?\n ?\( ?\) ?{ ?} ?\[ ?\] ?\; ?,))
+  ;;                               (lsp-deferred))))
+
 ;; LSP ;;
 
 ;; base lsp backend
@@ -77,7 +105,9 @@
   (setq flyover-background-lightness 45)
   ;; (setq flyover-use-theme-colors t)
   (setq flyover-debounce-interval 0.2) 
-  (setq flyover-line-position-offset 1)
+  ;; (setq flyover-line-position-offset 1)
+  (setq flyover-show-at-eol t)
+  (setq flyover-show-virtual-line nil)
   (setq flyover-wrap-messages nil)
   ;; (setq flyover-max-line-length 80)
   (setq flyover-checkers '(flycheck flymake)))

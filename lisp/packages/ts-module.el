@@ -15,6 +15,7 @@
 	  (css        . ("https://github.com/tree-sitter/tree-sitter-css" "master" "src"))
 	  (c          . ("https://github.com/tree-sitter/tree-sitter-c" "master" "src"))
       (cpp        . ("https://github.com/tree-sitter/tree-sitter-cpp" "master" "src"))
+      (qmljs        . ("https://github.com/yuja/tree-sitter-qmljs" "master" "src"))
 	  (python     . ("https://github.com/tree-sitter/tree-sitter-python" "master" "src"))))
 
   (setq major-mode-remap-alist
@@ -26,6 +27,7 @@
           (css-mode        . css-ts-mode)
           (c-mode          . c-ts-mode)
           (c++-mode        . c++-ts-mode)
+          (qml-mode        . qml-ts-mode)
           (python-mode     . python-ts-mode)))
 
   (dolist (lang '(typescript tsx javascript json css python))
