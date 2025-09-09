@@ -69,7 +69,7 @@
       "*" 'dirvish-mark-menu
       "y" 'dirvish-yank-menu
       ;; "N" 'dirvish-narrow
-      "N" 'dirvish-new-empty-file-a
+      "N" 'dired-create-empty-file
       "^" 'dirvish-history-last))
 
   :bind
