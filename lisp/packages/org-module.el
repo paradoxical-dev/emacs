@@ -22,19 +22,23 @@
  '(org-level-5 ((t (:height 0.95 :weight normal)))))
 
 ;; global modern mode
-(with-eval-after-load 'org (global-org-modern-mode))
-(setq
- org-modern-star 'replace
- org-modern-replace-stars "◉○◈◇✳"
- org-modern-fold-stars nil
- org-modern-list '((?- . "•") (?+ . "◦") (?* . "◆"))
- org-startup-with-inline-images t
- org-startup-with-latex-preview t
- org-hide-emphasis-markers t
- org-pretty-entities t)
+(with-eval-after-load 'org
+  (setq
+   org-modern-star 'replace
+   org-modern-replace-stars "◉○◈◇✳"
+   org-modern-fold-stars nil
+   org-modern-list '((?- . "•") (?+ . "◦") (?* . "◆"))
+   org-startup-with-inline-images t
+   org-startup-with-latex-preview t
+   org-hide-emphasis-markers t
+   org-pretty-entities t)
+  (global-org-modern-mode))
 
 ;; remove line numbers and wrap lines
 (add-hook 'org-mode-hook (lambda ()
+                           (display-line-numbers-mode 0)
+                           (visual-line-mode 1)))
+(add-hook 'org-agenda-mode-hook (lambda ()
                            (display-line-numbers-mode 0)
                            (visual-line-mode 1)))
 
@@ -44,10 +48,26 @@
    'org-babel-load-languages
    '(( emacs-lisp . t)
      ( latex      . t)
+     (sql         . t)
      ( python     . t)
      ( shell      . t))))
 
-;; custom agenda
+;; syntax highlighting in src blocks
+(with-eval-after-load 'org
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+  (setq org-src-preserve-indentation t)
+  (setq org-edit-src-content-indentation 0)
+
+  (add-to-list 'org-src-lang-modes
+               '("python" . python-ts)
+               '("qml"    . qml-ts)))
+
+;;                   ;;
+;; AGENDA EXTENSIONS ;;
+;;                   ;;
+
+;; nano agenda
 (use-package nano-agenda
   :straight (:type git
                    :host github
@@ -56,6 +76,16 @@
   :after org
   :config
   (setq nano-agenda-header-show nil))
+
+(use-package org-super-agenda
+  :after org
+  :config
+  (org-super-agenda-mode))
+
+(use-package org-timeblock
+  :after org
+  :config
+  (org-timeblock-mode))
 
 
 ;;          ;;
@@ -75,6 +105,12 @@
                                        (directory-files-recursively org-roam-directory "\\.org$"))))
   :bind
   (:map evil-normal-state-map
+        ("<leader>ox" . org-toggle-checkbox)
+        ("<leader>od" . org-deadline)
+        ("<leader>os" . org-schedule)
+        ("<leader>ot" . org-todo)
+        ("<leader>oa" . nano-agenda)
+        ("<leader>oA" . org-agenda)
         ("<leader>oi" . org-roam-node-insert)
         ("<leader>of" . org-roam-node-find)))
 
@@ -96,6 +132,7 @@
   :ensure t
   :hook
   (org-mode . olivetti-mode)
+  (nano-agenda-mode . olivetti-mode)
   :config
   (setq olivetti-body-width 75))
 
