@@ -1,7 +1,5 @@
-#+TITLE: Cortex
+#+TITLE: Emacs
 
-* 🧠 Cortex: An Emacs config for thinkers, builders and learners
+* Use My Other Config
 
-Cortex is a custom Emacs configuration built for those who want a deeply integrated, full-featured environment for writing, coding, learning, and living.
-
-Cortex brings together vim-style editing, project organization, personal knowledge management and a full-featured IDE all within the Emacs ecosystem.
+This repo has been archived in favor of my other project [[github:paradoxical-dev/nexus-emacs][Nexus]]
